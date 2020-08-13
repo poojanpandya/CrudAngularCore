@@ -1,0 +1,37 @@
+<!-- <table class="table table-hover">
+    <tr *ngFor="let pd of service.list">
+      <td (click)="populateForm(pd)">{{pd.CardOwnerName}}</td>
+      <td (click)="populateForm(pd)">{{pd.CardNumber}}</td>
+      <td (click)="populateForm(pd)">{{pd.ExpirationDate}}</td>
+      <td>
+        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.PMId)"></i>
+      </td>
+    </tr>
+  </table>
+  -->
+
+
+  
+
+<!-- 
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="listData" matSort>
+        <ng-container matColumnDef="fullName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.CardOwnerName}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header>Email</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.CardNumber}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="mobile">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ExpirationDate}}</mat-cell>
+          </ng-container>
+         
+       
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div> -->

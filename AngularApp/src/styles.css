@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+input.ng-touched.ng-invalid{
+    border-color: #dc3545;
+}
+
+input.ng-valid{
+    border-color: #28a745;
+}
+
+.green-icon{
+    color: #28a745;
+}
+.red-icon{
+    color: #dc3545;
+}
+
+#toast-container > div {
+    opacity:1;
+}
+
+table tr:hover{
+    cursor: pointer;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 5px;
+  }
+
+  .mat-radio-inner-circle {
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 16px !important;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: transform ease 280ms,background-color ease 280ms;
+    width: 16px !important;
+    transform: scale(0.001);
+}
+.mat-radio-outer-circle {
+    box-sizing: border-box;
+    height: 16px !important;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: border-color ease 280ms;
+    width: 16px !important;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+}
+.mat-radio-label-content {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+    display: inline-block;
+    order: 0;
+    line-height: inherit;
+    padding-left: 8px;
+    padding-right: 0;
+    margin-top: 8px;
+}
+.mat-radio-container {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    width: 17px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-left: 10px;
+    margin-top: 8px;
+    /* margin-bottom: 0px; */
+}
+.example-full-width {
+    width: 100%;
+  }
+  .mat-header-cell {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+mat-cell, mat-header-cell, mat-footer-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    min-height: inherit;
+    padding: 10px 30px 14px 38px
+}

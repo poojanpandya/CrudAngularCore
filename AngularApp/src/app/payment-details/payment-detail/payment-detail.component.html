@@ -1,0 +1,198 @@
+<div class="row">
+  <div class="col-md-5">
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="PMId" [value]="service.formData.PMId">
+    <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-user-circle" [class.green-icon]="CardOwnerName.valid" [class.red-icon]="CardOwnerName.invalid && CardOwnerName.touched"></i>
+            </div>
+          </div>
+          <input name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="service.formData.CardOwnerName" class="form-control"
+            placeholder="Card Owner Name" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="far fa-credit-card"  [class.green-icon]="CardNumber.valid" [class.red-icon]="CardNumber.invalid && CardNumber.touched"></i>
+            </div>
+          </div>
+          <input name="CardNumber" #CardNumber="ngModel" [(ngModel)]="service.formData.CardNumber" 
+          class="form-control" placeholder="16 Digit Card Number" required maxlength="16" minlength="16">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-7">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-calendar-alt"  [class.green-icon]="ExpirationDate.valid" [class.red-icon]="ExpirationDate.invalid && ExpirationDate.touched"></i>
+              </div>
+            </div>
+            <input type="datetime" name="ExpirationDate" #ExpirationDate="ngModel" [(ngModel)]="service.formData.ExpirationDate" class="form-control"
+              placeholder="MM/YY" required maxlength="5" minlength="5">
+          </div>
+        </div>
+        <div class="form-group col-md-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-key"  [class.green-icon]="CVV.valid" [class.red-icon]="CVV.invalid && CVV.touched"></i>
+              </div>
+            </div>
+            <input type="password" name="CVV" #CVV="ngModel" [(ngModel)]="service.formData.CVV" class="form-control" placeholder="CVV"
+            required  maxlength="3" minlength="3">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+             
+              <div class="input-group-text bg-white">
+                <i class="fa fa-flag" [class.green-icon]="service.formData.CountryId > 0" [class.red-icon]="service.formData.CountryId == 0 && CountryId.touched"></i>
+              </div>
+          </div>
+
+
+            <!-- <mat-label>Select Country</mat-label>
+            <mat-select name="CountryId" #CountryId="ngModel" [(ngModel)]="service.formData.CountryId" (valueChange)="service.GetState($event.target.value)">
+              <mat-option *ngFor="let country of service.Countrylist" [value]="country.CountryId">
+                {{country.CountryName}}
+              </mat-option>
+            </mat-select> -->
+
+
+          <select name="CountryId" #CountryId="ngModel" [(ngModel)]="service.formData.CountryId"  class="form-control" (change)="service.GetState($event.target.value)">
+              <option value="0">Select Country</option>
+              <option *ngFor="let country of service.Countrylist" value={{country.CountryId}}>{{country.CountryName}}</option>
+          </select>
+        </div>
+       
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+           
+            <div class="input-group-text bg-white">
+              <i class="fa fa-flag" [class.green-icon]="service.formData.StateId > 0" [class.red-icon]="service.formData.StateId == 0 && StateId.touched"></i>
+            </div>
+        </div>
+        <select name="StateId" #StateId="ngModel" [(ngModel)]="service.formData.StateId" class="form-control" (change)="service.GetCity($event.target.value)" >
+            <option value="0">Select State</option>
+            <option *ngFor="let state of service.Statelist" value={{state.StateId}}>{{state.StateName}}</option>
+        </select>
+      </div>
+     
+    </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+             
+              <div class="input-group-text bg-white">
+                <i class="fa fa-building" [class.green-icon]="service.formData.CityId > 0" [class.red-icon]="service.formData.CityId == 0 && CityId.touched"></i>
+              </div>
+          </div>
+          <select name="CityId" #CityId="ngModel" [(ngModel)]="service.formData.CityId"  class="form-control" required>
+              <option value="0">Select City</option>
+              <option *ngFor="let city of service.Citylist" value={{city.CityId}}>{{city.CityName}}</option>
+          </select>
+        </div>
+       
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+           
+            <div class="input-group-text bg-white" style="height: 37.5px;">
+              <i class="fa fa-user" [class.green-icon]="service.formData.Gender > 0" [class.red-icon]="service.formData.Gender == 0 && Gender.touched"></i>
+            </div>
+        </div>
+        <mat-radio-group name="Gender" #Gender="ngModel" [(ngModel)]="service.formData.Gender" required>
+            <mat-radio-button *ngFor="let gen of gender.array" [value]="gen.id">
+             {{gen.value}}
+            </mat-radio-button>
+        </mat-radio-group>
+      </div>    
+    </div>
+      
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <div class="input-group">
+            <div class="input-group-prepend">
+            
+            </div>
+            <mat-form-field class="example-full-width">
+              <mat-label>Address</mat-label>
+              <textarea name="Address" #Address="ngModel" [(ngModel)]="service.formData.Address"  matInput placeholder="Ex. your appartment Pincode.. "></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      
+      </div>
+      <div class="form-group">
+        <button  class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Submit</button>
+      </div>
+      <div *ngIf="service.formData.PMId > 0" class="form-group">
+        <button (click)="resetForm()" id="Cancelbtn"  class="btn btn-danger btn-lg btn-block" type="submit"><i class="fa fa-times"></i> Cancel</button>
+      </div>
+  </form>
+</div>
+<div class="col-md-7">
+  <div class="mat-elevation-z8">
+    
+
+<div fxLayout fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+</div>
+    <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="CardOwnerName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>OwnerName</mat-header-cell>
+            <mat-cell style="cursor: pointer;"  (click)="populateForm(element)" *matCellDef="let element">{{element.CardOwnerName}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="CardNumber">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header>CardNumber</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.CardNumber}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ExpirationDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ExpirationDate</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ExpirationDate}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="symbol">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell  style="cursor: pointer;" *matCellDef="let element"> <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(element.PMId)"></i> </mat-cell>
+          </ng-container>
+       
+        <!-- <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row> -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div> 
+  <!-- <table class="table table-hover">
+    <tr *ngFor="let pd of service.list">
+      <td (click)="populateForm(pd)">{{pd.CardOwnerName}}</td>
+      <td (click)="populateForm(pd)">{{pd.CardNumber}}</td>
+      <td (click)="populateForm(pd)">{{pd.ExpirationDate}}</td>
+      <td>
+        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.PMId)"></i>
+      </td>
+    </tr>
+  </table> -->
+</div>
+</div>
+ 
+
